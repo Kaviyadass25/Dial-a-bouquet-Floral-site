@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F5F5DC">
+    <meta name="description" content="Dial a Bouquet - Premium floral arrangements delivered to your doorstep">
+    <title>Dial a Bouquet - Premium Floral E-commerce</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-beige: #F5F5DC;
+            --secondary-beige: #E8E4D6;
+            --accent-beige: #D2C9B5;
+            --dark-beige: #B8A99A;
+            --text-dark: #5D534A;
+            --text-light: #8B7D6B;
+            --success: #8FBC8F;
+            --white: #FFFFFF;
+            --shadow: 0 4px 12px rgba(93, 83, 74, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--success);
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--success);
+        }
+
+        .nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--success);
+        }
+
+        /* Actions */
+        .actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            position: relative;
+            padding: 5px;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            color: var(--success);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--success);
+            color: var(--white);
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background: var(--primary-beige);
+            padding: 15px 20px;
+            display: none;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--accent-beige);
+            border-radius: 25px;
+            font-size: 1rem;
+            background: var(--white);
+        }
+
+        .search-close {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(93, 83, 74, 0.7), rgba(93, 83, 74, 0.7)),
+                        url('https://images.unsplash.com/photo-1446071103084-c257b5f70672?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--success);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: #7da97d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(143, 188, 143, 0.3);
+        }
+
+        /* Categories */
+        .categories {
+            padding: 80px 0;
+            background: var(--primary-beige);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--text-dark);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-card h3 {
+            padding: 15px 20px 5px;
+            color: var(--text-dark);
+        }
+
+        .category-card p {
+            padding: 0 20px 15px;
+            color: var(--text-light);
+        }
+
+        /* Products */
+        .products {
+            padding: 80px 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .product-price {
+            color: var(--success);
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .rating {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: var(--primary-beige);
+            color: var(--text-dark);
+            border: 2px solid var(--accent-beige);
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background: var(--success);
+            color: var(--white);
+            border-color: var(--success);
+        }
+
+        /* Delivery Info */
+        .delivery-info {
+            padding: 60px 0;
+            background: var(--secondary-beige);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .info-item i {
+            font-size: 2.5rem;
+            color: var(--success);
+            margin-bottom: 15px;
+        }
+
+        .info-item h3 {
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .info-item p {
+            color: var(--text-light);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--primary-beige);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--primary-beige);
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border: 1px solid var(--accent-beige);
+            background: var(--white);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--primary-beige);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .checkout-btn {
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-beige);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: var(--accent-beige);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--success);
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+            color: var(--accent-beige);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-beige);
+            color: var(--text-dark);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(245, 245, 220, 0.2);
+            color: var(--accent-beige);
+        }
+
+        /* Install Banner */
+        .install-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1002;
+            display: none;
+        }
+
+        .install-btn {
+            background: var(--success);
+            color: var(--white);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .dismiss-btn {
+            background: none;
+            border: none;
+            color: var(--accent-beige);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--text-dark);
+                cursor: pointer;
+            }
+
+            .nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: var(--white);
+                box-shadow: var(--shadow);
+                transition: left 0.3s ease;
+            }
+
+            .nav.active {
+                left: 0;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* PWA Installation Styles */
+        .install-banner {
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* Notification Toast */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1003;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- PWA Install Banner -->
+    <div id="installBanner" class="install-banner">
+        <p>Install Dial a Bouquet for better experience</p>
+        <button id="installBtn" class="install-btn">Install</button>
+        <button id="dismissBtn" class="dismiss-btn">×</button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-flower"></i>
+                <h1>Dial a Bouquet</h1>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Navigation -->
+            <nav class="nav" id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#bouquets">Bouquets</a></li>
+                    <li><a href="#occasions">Occasions</a></li>
+                    <li><a href="#subscription">Subscription</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Cart and User Actions -->
+            <div class="actions">
+                <button class="action-btn search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="action-btn user-btn">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="action-btn cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar" id="searchBar">
+            <input type="text" placeholder="Search for flowers, occasions, or themes...">
+            <button class="search-close" id="searchClose">×</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Fresh Blooms, Delivered with Love</h2>
+            <p>Premium floral arrangements crafted for life's finest moments</p>
+            <button class="btn-primary" id="shopNow">Shop Now</button>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Birthday Flowers">
+                    <h3>Birthday Blooms</h3>
+                    <p>Brighten their special day</p>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Anniversary Flowers">
+                    <h3>Anniversary</h3>
+                    <p>Celebrate love</p>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wedding Flowers">
+                    <h3>Wedding</h3>
+                    <p>Elegant arrangements</p>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1563170250-4627f28c1414?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Luxury Flowers">
+                    <h3>Luxury Collection</h3>
+                    <p>Premium selections</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products" id="bouquets">
+        <div class="container">
+            <h2 class="section-title">Featured Bouquets</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Products loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Info -->
+    <section class="delivery-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Same Day Delivery</h3>
+                    <p>Order by 6 PM for same-day delivery</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-moon"></i>
+                    <h3>Midnight Delivery</h3>
+                    <p>Surprise them at midnight</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-globe"></i>
+                    <h3>Worldwide Shipping</h3>
+                    <p>Send love across borders</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Fresh Guarantee</h3>
+                    <p>Fresh for minimum 5 days</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items loaded by JavaScript -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="btn-primary checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fas fa-flower"></i>
+                        <h2>Dial a Bouquet</h2>
+                    </div>
+                    <p>Premium floral arrangements delivered with love and care since 2024.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#bouquets">Shop</a></li>
+                        <li><a href="#subscription">Subscription</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-phone"></i> +91 1234567890</p>
+                    <p><i class="fas fa-envelope"></i> info@dialabouquet.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Dial a Bouquet. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div class="notification" id="notification"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Product Data
+        const products = [
+            {
+                id: 1,
+                name: "Eternal Love Roses",
+                price: 2999,
+                image: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Luxury",
+                rating: 4.8,
+                description: "12 premium red roses with baby's breath",
+                inStock: true
+            },
+            {
+                id: 2,
+                name: "Spring Bliss Bouquet",
+                price: 1999,
+                image: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Seasonal",
+                rating: 4.5,
+                description: "Mixed seasonal flowers arrangement",
+                inStock: true
+            },
+            {
+                id: 3,
+                name: "Royal Orchid Delight",
+                price: 3499,
+                image: "https://images.unsplash.com/photo-1545241047-6083a3684597?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Exotic",
+                rating: 4.9,
+                description: "Premium orchid arrangement",
+                inStock: true
+            },
+            {
+                id: 4,
+                name: "Sunshine Gerbera",
+                price: 1599,
+                image: "https://images.unsplash.com/photo-1560695380-cb1a9c42a585?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Birthday",
+                rating: 4.3,
+                description: "Bright gerbera daisies bouquet",
+                inStock: true
+            },
+            {
+                id: 5,
+                name: "Lily Symphony",
+                price: 2299,
+                image: "https://images.unsplash.com/photo-1572451479137-7d78d5c5d3ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Wedding",
+                rating: 4.6,
+                description: "Elegant lily arrangement",
+                inStock: true
+            },
+            {
+                id: 6,
+                name: "Midnight Romance",
+                price: 3999,
+                image: "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Luxury",
+                rating: 4.9,
+                description: "Premium midnight delivery bouquet",
+                inStock: true
+            }
+        ];
+
+        // Cart State
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let deferredPrompt = null;
+
+        // DOM Elements
+        const productGrid = document.getElementById('productGrid');
+        const cartBtn = document.getElementById('cartBtn');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.querySelector('.cart-count');
+        const searchBtn = document.getElementById('searchBtn');
+        const searchBar = document.getElementById('searchBar');
+        const searchClose = document.getElementById('searchClose');
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const shopNowBtn = document.getElementById('shopNow');
+        const installBanner = document.getElementById('installBanner');
+        const installBtn = document.getElementById('installBtn');
+        const dismissBtn = document.getElementById('dismissBtn');
+        const notification = document.getElementById('notification');
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartUI();
+            setupEventListeners();
+            checkPWAInstall();
+        });
+
+        // Render Products
+        function renderProducts() {
+            productGrid.innerHTML = products.map(product => `
+                <div class="product-card" data-id="${product.id}">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="rating">
+                            ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}
+                            <span style="color: var(--text-light); font-size: 0.9rem;">(${product.rating})</span>
+                        </div>
+                        <p class="product-price">₹${product.price}</p>
+                        <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 15px;">${product.description}</p>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Cart Functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            updateCartUI();
+            showNotification(`${product.name} added to cart!`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartUI();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity < 1) {
+                    removeFromCart(productId);
+                    return;
+                }
+                saveCart();
+                updateCartUI();
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items and total
+            let totalPrice = 0;
+            cartItems.innerHTML = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+                return `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <p class="cart-item-price">₹${item.price} × ${item.quantity} = ₹${itemTotal}</p>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            cartTotal.textContent = `₹${totalPrice}`;
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            // Cart toggle
+            cartBtn.addEventListener('click', () => {
+                cartSidebar.classList.add('active');
+            });
+
+            closeCart.addEventListener('click', () => {
+                cartSidebar.classList.remove('active');
+            });
+
+            // Search toggle
+            searchBtn.addEventListener('click', () => {
+                searchBar.style.display = 'block';
+                searchBar.querySelector('input').focus();
+            });
+
+            searchClose.addEventListener('click', () => {
+                searchBar.style.display = 'none';
+            });
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+
+            // Shop now button
+            shopNowBtn.addEventListener('click', () => {
+                document.querySelector('#bouquets').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // PWA Installation
+            installBtn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    if (outcome === 'accepted') {
+                        installBanner.style.display = 'none';
+                    }
+                    deferredPrompt = null;
+                }
+            });
+
+            dismissBtn.addEventListener('click', () => {
+                installBanner.style.display = 'none';
+                localStorage.setItem('pwaDismissed', 'true');
+            });
+
+            // Close cart when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!cartSidebar.contains(e.target) && !cartBtn.contains(e.target) && cartSidebar.classList.contains('active')) {
+                    cartSidebar.classList.remove('active');
+                }
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                            // Update active nav link
+                            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                            link.classList.add('active');
+                        }
+                    }
+                });
+            });
+        }
+
+        // PWA Installation
+        function checkPWAInstall() {
+            // Check if already installed
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                return;
+            }
+
+            // Check if dismissed before
+            if (localStorage.getItem('pwaDismissed') === 'true') {
+                return;
+            }
+
+            // Listen for beforeinstallprompt event
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                setTimeout(() => {
+                    installBanner.style.display = 'flex';
+                }, 3000);
+            });
+        }
+
+        // Notification System
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered successfully:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
